@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: sg-webapp-config
+data:
+  NODE_ENV: development
+  APP_NAME: sg-webapp
