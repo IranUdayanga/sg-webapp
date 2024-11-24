@@ -21,12 +21,12 @@ spec:
             - name: NODE_ENV
               valueFrom:
                 configMapKeyRef:
-                  name: node-app-config
+                  name: sg-webapp-config
                   key: NODE_ENV
             - name: APP_NAME
               valueFrom:
                 configMapKeyRef:
-                  name: node-app-config
+                  name: sg-webapp-config
                   key: APP_NAME
           volumeMounts:
             - name: storage-volume
