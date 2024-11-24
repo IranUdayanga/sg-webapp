@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: node-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sg-webapp
+  template:
+    metadata:
+      labels:
+        app: sg-webapp
+    spec:
+      containers:
+        - name: sg-webapp
+          image: <ACR_NAME>/node-app:<IMAGE_TAG>
+          ports:
+            - containerPort: 3000
+          env:
+            - name: NODE_ENV
+              valueFrom:
+                configMapKeyRef:
+                  name: node-app-config
+                  key: NODE_ENV
+            - name: APP_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: node-app-config
+                  key: APP_NAME
+          volumeMounts:
+            - name: storage-volume
+              mountPath: /data
+      volumes:
+        - name: storage-volume
+          azureFile:
+            secretName: azure-storage-secret
+            shareName: "myshare"
+            readOnly: false
