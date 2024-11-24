@@ -58,4 +58,4 @@ stages:
                 manifests/configmap.yaml
               containers: |
                 $(ACR_NAME)/$(IMAGE_NAME):$(IMAGE_TAG)
-              namespace: 'default'
+              namespace: 'frontend'
